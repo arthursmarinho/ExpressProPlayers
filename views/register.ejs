@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar</title>
+</head>
+<%- include("partials/header") %>
+
+  <body>
+    <h1>Registrar</h1>
+    <form action="/auth/register" method="POST">
+      <input type="text" name="username" placeholder="Usuário" required>
+      <input type="password" name="password" placeholder="Senha" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <a href="/auth/login">Já tem conta? Faça login</a>
+
+  </body>
+  <%- include("partials/footer") %>
+
+
+</html>

@@ -10,11 +10,16 @@
           <a href="/teams">Teams</a>
           <a href="/aboutus">Sobre nós</a>
         </div>
-        <div class="rightnavbar">
-          <input type="search" placeholder="Search...">
-        </div>
       </div>
-
+      <div className="login-icon">
+        <% if (user) { %>
+          <span>Bem-vindo, <%= user.username %>!</span>
+          <a href="/auth/logout">Sair</a>
+          <% } else { %>
+            <a href="/auth/login">Login</a>
+            <a href="/auth/register">Registrar</a>
+            <% } %>
+      </div>
     </nav>
   </header>
 </div>
