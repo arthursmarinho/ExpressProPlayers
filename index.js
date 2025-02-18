@@ -8,36 +8,31 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-// Configurações do Express
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true })); // Middleware para processar formulários
-app.use(express.json()); // Middleware para processar JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// Conectar com o MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000
 })
-  .then(() => console.log("MongoDB conectado"))
-  .catch((err) => console.error("Erro ao conectar:", err));
+.then(() => console.log("✅ MongoDB conectado com sucesso!"))
+.catch(err => console.error("❌ Erro ao conectar ao MongoDB:", err));
 
-  app.use(session({
-    secret: process.env.SESSION_SECRET || "segredo_super_secreto",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Mudar para true se usar HTTPS
-  }));
-  
-  // Middleware para tornar user disponível em todas as views
-  app.use((req, res, next) => {
-    res.locals.user = req.session.user || null;
-    next();
-  });
+app.use(session({
+  secret: process.env.SESSION_SECRET || "segredo_super_secreto",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
-// Rotas
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 const homeRoute = require("./routes/home");
 app.use("/", homeRoute);
 
@@ -52,6 +47,8 @@ app.use("/aboutus", aboutusRoute);
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
+
+module.exports = app;
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);
