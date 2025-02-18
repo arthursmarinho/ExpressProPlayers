@@ -1,20 +1,17 @@
-<head>
-  <link rel="stylesheet" href="/style.css">
-</head>
 <div>
   <header>
-    <nav>
-      <div class="nav">
+    <nav class="nav">
+      <div class="nav-left">
         <a href="/">
           <img src="https://cdn-icons-png.flaticon.com/512/3405/3405846.png" width="50" height="50">
         </a>
-        <div class="navtoolsleft">
-          <a href="/proplayers">Players</a>
-          <a href="/teams">Teams</a>
-          <a href="/aboutus">Sobre nós</a>
-        </div>
       </div>
-      <div className="login-icon">
+      <div class="nav-center">
+        <a href="/proplayers">Players</a>
+        <a href="/teams">Teams</a>
+        <a href="/aboutus">About Us</a>
+      </div>
+      <div class="nav-right">
         <% if (user) { %>
           <span>Bem-vindo, <%= user.username %>!</span>
           <a href="/auth/logout">Sair</a>
