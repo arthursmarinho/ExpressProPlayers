@@ -37,7 +37,7 @@ a{
 
 .nav-right {
   display: flex;
-  gap: 10px;
+  gap: 2em;
 }
 
 .nav a, .nav span {

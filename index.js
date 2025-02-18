@@ -39,6 +39,9 @@ app.use("/", homeRoute);
 const playersRoute = require("./routes/proplayers");
 app.use("/proplayers", playersRoute);
 
+const aboutplayerRoutes = require("./routes/aboutplayer");
+app.use("/aboutplayer", aboutplayerRoutes);
+
 const teamsRoute = require("./routes/teams");
 app.use("/teams", teamsRoute);
 
