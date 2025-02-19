@@ -4,7 +4,7 @@ input[type="search"] {
   outline: none; 
   background-color: #f9f9f9;
 }
-.body{
+body{
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -49,12 +49,21 @@ a{
 
 
 .footer{
+  display: flex;
+  justify-content: space-between;
   background-color: #1E90FF;
-  height: 100%;
-  width: 100%;
+  font-family: "Nunito", serif;
+  font-weight: 500;
+  font-size: large;
 }
 
+.left-footer{
+  padding: 4em;
+}
 
+.right-footer{
+  padding: 4em;
+}
 
 .protext{
 display: flex;
