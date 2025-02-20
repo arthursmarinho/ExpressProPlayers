@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
@@ -12,8 +13,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000
 })
 .then(() => console.log("✅ MongoDB conectado com sucesso!"))
@@ -37,8 +41,7 @@ app.use("/", homeRoute);
 const playersRoute = require("./routes/proplayers");
 app.use("/proplayers", playersRoute);
 
-const aboutplayerRoutes = require("./routes/aboutplayer");
-app.use("/aboutplayer", aboutplayerRoutes);
+
 
 const teamsRoute = require("./routes/teams");
 app.use("/teams", teamsRoute);
@@ -49,7 +52,8 @@ app.use("/aboutus", aboutusRoute);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
-module.exports = app;
+const proplayersApi = require('./routes/api/proplayers'); 
+app.use('/api/proplayers', proplayersApi); 
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);
