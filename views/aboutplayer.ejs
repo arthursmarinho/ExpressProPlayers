@@ -4,29 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Details</title>
+  <title>
+    <%= player.name %> - Details
+  </title>
   <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-  <h1>
-    <%= player.name %> - Detalhes
-  </h1>
-  <div>
-    <img src="<%= player.image %>" alt="<%= player.name %>" width="200">
-    <p><strong>Idade:</strong>
-      <%= player.age %>
-    </p>
-    <p><strong>Time:</strong>
-      <%= player.team %>
-    </p>
-    <p><strong>Jogo:</strong>
-      <%= player.game %>
-    </p>
-    <p><strong>Descrição:</strong>
-      <%= player.description %>
-    </p>
-  </div>
+  <%- include("partials/header") %>
+    <div class="about-player">
+      <div class="aboutplayer-img">
+        <img src="<%= player.image %>">
+      </div>
+      <div class="player-details">
+        <p><strong>Name:</strong>
+          <%= player.name %>
+        </p>
+        <p><strong>Age:</strong>
+          <%= player.age %>
+        </p>
+        <p><strong>Team:</strong>
+          <%= player.team %>
+        </p>
+        <p><strong>History:</strong>
+          <%= player.history %>
+        </p>
+        <p><strong>Sensibility:</strong>
+          <%= player.sensi %>
+        </p>
+      </div>
+    </div>
+    <%- include("partials/footer") %>
 </body>
 
 </html>

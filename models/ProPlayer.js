@@ -5,6 +5,10 @@ const ProPlayerSchema = new mongoose.Schema({
   age: { type: Number, required: true },
   image: { type: String, required: true },
   team: { type: String, required: true },
+  history: { type: String, required: true },
+  sensi: { type: String, required: true },
 });
 
-module.exports = mongoose.model("ProPlayer", ProPlayerSchema);
+const ProPlayer = mongoose.model("ProPlayer", ProPlayerSchema);
+
+module.exports = ProPlayer;

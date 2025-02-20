@@ -4,8 +4,8 @@ const ProPlayer = require('../../models/ProPlayer');
 
 router.post('/', async (req, res) => {
   try {
-    const { name, age, image, team} = req.body;
-    const newPlayer = new ProPlayer({ name, age, image, team });
+    const { name, age, image, team, history, sensi} = req.body;
+    const newPlayer = new ProPlayer({ name, age, image, team, history, sensi });
     await newPlayer.save();
     res.status(201).json(newPlayer);
   } catch (err) {

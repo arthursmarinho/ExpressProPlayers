@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Players</title>
+  <title>Lista de Jogadores</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -13,25 +13,24 @@
     <div class="playercards">
       <% players.forEach(player=> { %>
         <div class="card">
-          <img class="player-img" src="<%= player.image %>" alt="<%= player.name %>">
           <h2>
-            <a href="/proplayers/<%= player._id %>">
-              <u>
-                <%= player.name %>
-              </u>
-            </a>
+            <%= player.name %>
           </h2>
+          <img class="player-img" src="<%= player.image %>" alt="<%= player.name %>">
           <p><strong>Idade:</strong>
             <%= player.age %>
           </p>
           <p><strong>Time:</strong>
             <%= player.team %>
           </p>
+          <p><strong>Sensibilidade:</strong>
+            <%= player.sensi %>
+          </p>
+          <a href="/proplayers/<%= player._id %>"><u>Ver detalhes</u></a>
         </div>
-        <% }); %>
+        <% }) %>
     </div>
     <%- include("partials/footer") %>
-
 </body>
 
 </html>

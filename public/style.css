@@ -79,7 +79,7 @@ padding-left: 5em;
   justify-content: start;
   gap: 20px;
   flex-wrap: wrap;
-  padding:5em;
+  padding:10em;
 }
 
 .card {
@@ -98,4 +98,20 @@ padding-left: 5em;
   height: 100px;
   border-radius: 4px;
   margin-bottom: 10px;
+}
+
+.about-player{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr)
+}
+
+.aboutplayer-img{
+  display: flex;
+  justify-content: center;
+}
+
+.player-details{
+  justify-content: start;
+  font-family: "Nunito", serif;
+  font-weight: 500;
 }
