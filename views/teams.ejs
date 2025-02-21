@@ -7,19 +7,23 @@
   <title>Teams</title>
   <link rel="stylesheet" href="/style.css">
 </head>
+<%- include("partials/header") %>
+  <div class="team-div">
+    <% teams.forEach(team=> { %>
+      <p>
+        <u>
+          <div class="teams">
+            <a href="/teams/<%= team._id %>">
+              <%= team.name %>
+                <img src="<%= team.image %>" class="team-img">
+            </a>
+          </div>
+        </u>
+      </p>
+      <% }) %>
+  </div>
+  <%- include("partials/footer") %>
 
-<body class="body">
-  <%- include("partials/header") %>
-
-    <div class="main">
-
-      <h1>Teams</h1>
-      <a href="/">
-        <ul>Voltar para Home</ul>
-      </a>
-    </div>
-    <%- include("partials/footer") %>
-
-</body>
+    </body>
 
 </html>

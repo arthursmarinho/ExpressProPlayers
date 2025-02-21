@@ -27,7 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { 
-    secure: process.env.NODE_ENV === 'production'  // "secure" será true apenas em produção
+    secure: process.env.NODE_ENV === 'production'  
   }
 }));
 
@@ -55,6 +55,9 @@ app.use("/auth", authRoutes);
 
 const proplayersApi = require('./routes/api/proplayers'); 
 app.use('/api/proplayers', proplayersApi);
+
+const teamsApi = require('./routes/api/teams')
+app.use('/api/teams', teamsApi);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);
