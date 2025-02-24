@@ -47,8 +47,8 @@ app.use("/proplayers", playersRoute);
 const teamsRoute = require("./routes/teams");
 app.use("/teams", teamsRoute);
 
-const aboutusRoute = require("./routes/aboutus");
-app.use("/aboutus", aboutusRoute);
+const aboutRoute = require("./routes/about");
+app.use("/about", aboutRoute);
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
