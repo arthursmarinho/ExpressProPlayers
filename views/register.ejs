@@ -6,18 +6,19 @@
   <title>Registrar</title>
   <link rel="stylesheet" href="/style.css">
 </head>
+
 <%- include("partials/header") %>
 
-  <body>
+  <div class="register-container">
     <h1>Registrar</h1>
-    <form action="/auth/register" method="POST">
+    <form action="/auth/register" method="POST" class="register-form">
       <input type="text" name="username" placeholder="Usuário" required>
       <input type="password" name="password" placeholder="Senha" required>
       <button type="submit">Cadastrar</button>
     </form>
-    <a href="/auth/login">Já tem conta? Faça login</a>
-  </body>
-  <%- include("partials/footer") %>
+    <a href="/auth/login" class="register-link">Já tem conta? Faça login</a>
+  </div>
 
+  <%- include("partials/footer") %>
 
 </html>

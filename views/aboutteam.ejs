@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>
+    <%= team.name %> - Detalhes
+  </title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-  <p>
-    Team Name: <%= team.name %>
-  </p>
-  <p>
-    Team Birth: <%= team.birth %>
-  </p>
-  <p>
-    <img src="<%= team.image %>">
-  </p>
-  <p>
-    History: <%= team.history %>
-  </p>
+  <%- include("partials/header") %>
+    <div class="team-details">
+      <p class="team-name">Team Name: <%= team.name %>
+      </p>
+      <p class="team-birth">Team Birth: <%= team.birth %>
+      </p>
+      <img class="team-img" src="<%= team.image %>" alt="<%= team.name %>">
+      <p class="team-history">History: <%= team.history %>
+      </p>
+    </div>
+    <%- include("partials/footer") %>
+
 </body>
 
 </html>

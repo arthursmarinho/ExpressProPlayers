@@ -15,32 +15,28 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Conexão com o MongoDB
 mongoose.connect(process.env.MONGO_URI, {
-serverSelectionTimeoutMS: 5000,
+    serverSelectionTimeoutMS: 5000,
 })
-.then(() => console.log("✅ MongoDB conectado com sucesso!"))
-.catch(err => console.error("❌ Erro ao conectar ao MongoDB:", err));
+    .then(() => console.log("✅ MongoDB conectado com sucesso!"))
+    .catch(err => console.error("❌ Erro ao conectar ao MongoDB:", err));
 
-// Configuração de sessão
 app.use(session({
-  secret: process.env.SESSION_SECRET || "segredo_super_secreto",
-  resave: false,
-  saveUninitialized: false,
-  cookie: { 
-    secure: process.env.NODE_ENV === "production",  // Ativado apenas em produção
-    httpOnly: true, // Impede acesso ao cookie via JavaScript no frontend
-    sameSite: "lax" // Permite envio do cookie entre domínios diferentes (tente "none" se necessário)
-  }
+    secret: process.env.SESSION_SECRET || "segredo_super_secreto",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        secure: process.env.NODE_ENV === "production", 
+        httpOnly: true, 
+        sameSite: "lax" 
+    }
 }));
 
-// Middleware para adicionar informações do usuário à sessão
 app.use((req, res, next) => {
-  res.locals.user = req.session.user || null;
-  next();
+    res.locals.user = req.session.user || null;
+    next();
 });
 
-// Definição das rotas
 const homeRoute = require("./routes/home");
 app.use("/", homeRoute);
 
@@ -56,12 +52,9 @@ app.use("/about", aboutRoute);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
-const proplayersApi = require('./routes/api/proplayers'); 
-app.use('/api/proplayers', proplayersApi);
-
-const teamsApi = require('./routes/api/teams')
-app.use('/api/teams', teamsApi);
+const savedPlayer = require("./routes/savedPlayer");
+app.use("/savedPlayer", savedPlayer);
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);
+    console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);
 });
