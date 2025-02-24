@@ -32,8 +32,15 @@ app.use(session({
     }
 }));
 
+// Middleware para adicionar o usuário à res.locals
 app.use((req, res, next) => {
-    res.locals.user = req.session.user || null;
+    // Verifica se o usuário está logado e adiciona o user à res.locals
+    if (req.session.userId) {
+        // Aqui você pode buscar o usuário no banco, se necessário
+        res.locals.user = req.session.userId; // Pode substituir por mais dados do usuário se necessário
+    } else {
+        res.locals.user = null;
+    }
     next();
 });
 
@@ -52,8 +59,9 @@ app.use("/about", aboutRoute);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
-const savedPlayer = require("./routes/savedPlayer");
-app.use("/savedPlayer", savedPlayer);
+// Nova rota para salvar e visualizar jogadores
+const savedPlayersRoute = require("./routes/savedPlayers");
+app.use(savedPlayersRoute);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);

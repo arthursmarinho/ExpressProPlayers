@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogadores Salvos</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <%- include("partials/header") %>
+    <div class="saved-players">
+      <h2>Jogadores Salvos</h2>
+      <% if (players.length> 0) { %>
+        <div class="playercards">
+          <% players.forEach(player=> { %>
+            <div class="card">
+              <h2>
+                <%= player.playerName %>
+              </h2>
+              <p><strong>Jogo:</strong>
+                <%= player.game %>
+              </p>
+              <p><strong>Time:</strong>
+                <%= player.team %>
+              </p>
+            </div>
+            <% }) %>
+        </div>
+        <% } else { %>
+          <p>Nenhum jogador salvo.</p>
+          <% } %>
+    </div>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

@@ -34,13 +34,11 @@
         </p>
       </div>
 
-      <!-- Verificação de login -->
       <% if (user) { %>
         <button id="savePlayerButton">Salvar Jogador</button>
         <% } else { %>
-          <p>Você precisa estar logado para salvar o jogador.</p>
+          <p>Faça login para salvar os dados de um jogador.</p>
           <% } %>
-
     </div>
     <%- include("partials/footer") %>
 
@@ -49,7 +47,7 @@
           try {
             const response=await fetch("/savedPlayer/save",{
               method: "POST",
-              credentials: "include",
+              credentials: "include", // Para enviar cookies de sessão
               headers: {
                 "Content-Type": "application/json"
               },
@@ -66,8 +64,8 @@
         document.getElementById("savePlayerButton")?.addEventListener("click",() => {
           const player={
             playerName: "<%= player.name %>",
-            game: "Counter-Strike",  // Altere conforme necessário
-            team: "<%= player.team %>", // Usando o time do jogador
+            game: "Counter-Strike", // Altere conforme necessário
+            team: "<%= player.team %>" // Usando o time do jogador
           };
 
           savePlayer(player);
