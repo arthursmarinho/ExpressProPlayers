@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
+app.set("trust proxy", 1);
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("views", path.join(__dirname, "views"));
@@ -25,9 +26,11 @@ serverSelectionTimeoutMS: 5000,
 app.use(session({
   secret: process.env.SESSION_SECRET || "segredo_super_secreto",
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { 
-    secure: process.env.NODE_ENV === 'production'  
+    secure: process.env.NODE_ENV === "production",  // Ativado apenas em produção
+    httpOnly: true, // Impede acesso ao cookie via JavaScript no frontend
+    sameSite: "lax" // Permite envio do cookie entre domínios diferentes (tente "none" se necessário)
   }
 }));
 
