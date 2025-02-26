@@ -5,6 +5,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const cors = require("cors");
+const favicon = require('serve-favicon');
 
 const PORT = process.env.PORT || 3000;
 
@@ -12,8 +13,10 @@ app.set("trust proxy", 1);
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("views", path.join(__dirname, "views"));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
 
 mongoose.connect(process.env.MONGO_URI, {
     serverSelectionTimeoutMS: 5000,
