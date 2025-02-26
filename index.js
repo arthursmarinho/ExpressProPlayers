@@ -55,12 +55,12 @@ app.use("/teams", teamsRoute);
 const aboutRoute = require("./routes/about");
 app.use("/about", aboutRoute);
 
-const authRoutes = require("./routes/auth");
-app.use("/auth", authRoutes);
+// const authRoutes = require("./routes/auth");
+// app.use("/auth", authRoutes);
 
 // Nova rota para salvar e visualizar jogadores
-const savedPlayersRoute = require("./routes/savedPlayers");
-app.use(savedPlayersRoute);
+// const savedPlayersRoute = require("./routes/savedPlayers");
+// app.use(savedPlayersRoute);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT} 🚀`);
