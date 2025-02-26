@@ -1,6 +1,5 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const router = express.Router();
@@ -10,11 +9,13 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("/");
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("Erro ao deslogar.");
+    }
+    res.redirect("/"); // Redireciona para a home após logout
   });
 });
-
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -34,17 +35,17 @@ router.post("/register", async (req, res) => {
     const newUser = new User({ username, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).send("Usuário cadastrado com sucesso!"); 
+    res.status(201).send("Usuário cadastrado com sucesso!");
   } catch (err) {
     console.error(err);
     res.status(500).send("Erro ao registrar usuário: " + err.message);
   }
 });
 
-
 router.get("/login", (req, res) => {
   res.render("login");
 });
+
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -63,16 +64,14 @@ router.post("/login", async (req, res) => {
       return res.status(400).send("Senha incorreta!");
     }
 
-    const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    // Salva o usuário na sessão para permitir o login
+    req.session.userId = user._id; // Armazenando o ID do usuário na sessão
 
-    req.session.user = { id: user._id, username: user.username };
-
-    res.redirect("/");
+    res.redirect("/"); // Redireciona para a página inicial após o login
   } catch (err) {
     console.error(err);
     res.status(500).send("Erro ao fazer login: " + err.message);
   }
 });
-
 
 module.exports = router;

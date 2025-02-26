@@ -34,15 +34,15 @@
         </p>
       </div>
 
-      <% if (user) { %>
+      <!-- <% if (user) { %>
         <button id="savePlayerButton">Salvar Jogador</button>
         <% } else { %>
           <p>Faça login para salvar os dados de um jogador.</p>
-          <% } %>
+          <% } %> -->
     </div>
     <%- include("partials/footer") %>
 
-      <script>
+      <!-- <script>
         async function savePlayer(player) {
           try {
             const response=await fetch("/savedPlayer/save",{
@@ -70,7 +70,7 @@
 
           savePlayer(player);
         });
-      </script>
+      </script> -->
 </body>
 
 </html>

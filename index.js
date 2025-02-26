@@ -34,10 +34,9 @@ app.use(session({
 
 // Middleware para adicionar o usuário à res.locals
 app.use((req, res, next) => {
-    // Verifica se o usuário está logado e adiciona o user à res.locals
     if (req.session.userId) {
-        // Aqui você pode buscar o usuário no banco, se necessário
-        res.locals.user = req.session.userId; // Pode substituir por mais dados do usuário se necessário
+        // Buscando o usuário no banco, se necessário
+        res.locals.user = { id: req.session.userId }; // Coloca o ID do usuário no locals
     } else {
         res.locals.user = null;
     }
